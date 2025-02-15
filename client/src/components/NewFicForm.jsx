@@ -1,3 +1,4 @@
+// to do: add custom required messages
 import {
   DialogActionTrigger,
   DialogBody,
@@ -11,14 +12,20 @@ import {
 } from '@/components/ui/dialog'
 import { Button, Field, Input, Stack } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 export function NewFicForm() {
-  const { register, handleSubmit } = useForm()
+  const [open, setOpen] = useState(false)
+  const { register, handleSubmit, reset } = useForm()
 
-  const onSubmit = handleSubmit((data) => console.log(data))
+  const onSubmit = handleSubmit((data) => {
+    setOpen(!open)
+    console.log(data)
+    reset()
+  })
 
   return (
-    <DialogRoot>
+    <DialogRoot lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
       <DialogTrigger asChild>
         <Button variant="outline" size="md">
           ADD
@@ -31,29 +38,41 @@ export function NewFicForm() {
         <form onSubmit={onSubmit}>
           <DialogBody>
             <Stack>
-              <Field.Root>
-                <Field.Label>Title</Field.Label>
+              <Field.Root required>
+                <Field.Label>
+                  Title
+                  <Field.RequiredIndicator />
+                </Field.Label>
                 <Input
                   {...register('title', { required: true })}
                   placeholder="Wicked: The Life and Times of the Wicked Witch of the West"
                 />
               </Field.Root>
-              <Field.Root>
-                <Field.Label>Author</Field.Label>
+              <Field.Root required>
+                <Field.Label>
+                  Author
+                  <Field.RequiredIndicator />
+                </Field.Label>
                 <Input
                   {...register('author', { required: true })}
                   placeholder="Gregory Maguire"
                 />
               </Field.Root>
-              <Field.Root>
-                <Field.Label>Fandom</Field.Label>
+              <Field.Root required>
+                <Field.Label>
+                  Fandom
+                  <Field.RequiredIndicator />
+                </Field.Label>
                 <Input
                   {...register('fandom', { required: true })}
                   placeholder="The Wizard of Oz"
                 />
               </Field.Root>
-              <Field.Root>
-                <Field.Label>Link</Field.Label>
+              <Field.Root required>
+                <Field.Label>
+                  Link
+                  <Field.RequiredIndicator />
+                </Field.Label>
                 <Input
                   {...register('link', { required: true })}
                   placeholder="archiveofourown.org"
