@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import './App.css'
+import { Shelf } from './components/Shelf'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>FicShelf</h1>
+      <Shelf />
     </>
   )
 }
