@@ -1,6 +1,6 @@
-// to do: use chakra's For to render fic items
 import { useState, useEffect } from 'react'
 import { ShelfItem } from './ShelfItem'
+import { For, Stack } from '@chakra-ui/react'
 
 /**
  * A component that displays the user's bookshelf.
@@ -35,19 +35,14 @@ export function Shelf() {
   }
 
   return (
-    <>
+    <Stack>
       {shelf ? (
-        <div>
-          <h2>Here is your shelf.</h2>
-          <ul>
-            {shelf.map((fic) => (
-              <ShelfItem key={fic.id} fic={fic} />
-            ))}
-          </ul>
-        </div>
+        <For each={shelf}>
+          {(item, index) => <ShelfItem key={index} fic={item} />}
+        </For>
       ) : (
         <p>Could not find shelf.</p>
       )}
-    </>
+    </Stack>
   )
 }
