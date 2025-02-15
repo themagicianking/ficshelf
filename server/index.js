@@ -1,8 +1,13 @@
 import express from 'express'
-const APP = express()
+import cors from 'cors'
 import 'dotenv/config'
 import { SHELF } from './data.js'
+
+const APP = express()
+const port = process.env.PORT || 3000
+
 APP.use(express.json())
+APP.use(cors())
 
 APP.get('/shelf', async (req, res) => {
   try {
@@ -10,11 +15,10 @@ APP.get('/shelf', async (req, res) => {
     res.json(SHELF)
   } catch {
     console.log('Could not find shelf.')
-    res.status(500)
+    res.sendStatus(500)
   }
 })
 
-const port = process.env.PORT || 3000
 APP.listen(port, () => {
   console.log(`API server listening on port ${port}`)
 })
