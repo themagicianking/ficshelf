@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Box, Text } from '@chakra-ui/react'
 
 /**
  *
@@ -7,11 +8,11 @@ import PropTypes from 'prop-types'
  */
 export function ShelfItem({ fic }) {
   return (
-    <li>
-      <h3>Title: {fic.title}</h3>
-      <p>Author: {fic.author}</p>
-      <p>Fandom: {fic.fandom}</p>
-    </li>
+    <Box bg="black" color="white" p="4">
+      <Text>
+        {fic.title} by {fic.author}
+      </Text>
+    </Box>
   )
 }
 
