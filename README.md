@@ -16,8 +16,8 @@ A virtual bookshelf for fanfiction.
 
 ### Components
 
-- Shelf
-- ShelfItem
+- Shelf: Displays the user's bookshelf.
+- ShelfItem: Props: fic (an object). The simplified version of a fic displayed on the shelf.
 
 ### Server Routes
 
