@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { ShelfItem } from './ShelfItem'
 
 /**
  * A component that displays the user's bookshelf.
@@ -23,7 +24,7 @@ export function Shelf() {
         return res.json()
       })
       .then((json) => {
-        setShelf(JSON.stringify(json))
+        setShelf(json)
       })
       .catch((error) => {
         console.log(
@@ -37,7 +38,11 @@ export function Shelf() {
       {shelf ? (
         <div>
           <h2>Here is your shelf.</h2>
-          <div>{shelf}</div>
+          <ul>
+            {shelf.map((fic) => (
+              <ShelfItem key={fic.id} fic={fic} />
+            ))}
+          </ul>
         </div>
       ) : (
         <p>Could not find shelf.</p>
