@@ -23,9 +23,32 @@ export function NewFicForm() {
   const [open, setOpen] = useState(false)
   const { register, handleSubmit, reset } = useForm()
 
+  /**
+   *
+   * @param {object} newFic - An object containing title, author, fandom, and link
+   */
+  async function postFic(newFic) {
+    await fetch(`http://localhost:5000/fic`, {
+      method: 'POST',
+      body: JSON.stringify(newFic),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then((res) => {
+        if (res.status >= 400) {
+          throw res.status
+        }
+        console.log(`Fic has been created, server sent response: ${res.status}`)
+      })
+      .catch((error) => {
+        console.log(
+          `Could not create fic. The following error ocurred: ${error}`
+        )
+      })
+  }
+
   const onSubmit = handleSubmit((data) => {
     setOpen(!open)
-    console.log(data)
+    postFic(data)
     reset()
   })
 

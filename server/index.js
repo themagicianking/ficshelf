@@ -21,7 +21,9 @@ APP.get('/shelf', async (req, res) => {
 
 APP.post('/fic', async (req, res) => {
   try {
-    console.log(`Posting new fic data ${req}.`)
+    console.log(
+      `Posting new fic data ${JSON.stringify(req.body, undefined, 4)}}.`
+    )
     res.sendStatus(200)
   } catch (error) {
     console.log('Could not post fic data.')
