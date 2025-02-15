@@ -1,3 +1,4 @@
+// to do: use chakra's For to render fic items
 import { useState, useEffect } from 'react'
 import { ShelfItem } from './ShelfItem'
 
