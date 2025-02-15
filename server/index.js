@@ -13,9 +13,19 @@ APP.get('/shelf', async (req, res) => {
   try {
     console.log(`Sending shelf with ${SHELF.length} book(s).`)
     res.json(SHELF)
-  } catch {
+  } catch (error) {
     console.log('Could not find shelf.')
-    res.sendStatus(500)
+    res.status(404).send(error)
+  }
+})
+
+APP.post('/fic', async (req, res) => {
+  try {
+    console.log(`Posting new fic data ${req}.`)
+    res.sendStatus(200)
+  } catch (error) {
+    console.log('Could not post fic data.')
+    res.status(400).send(error)
   }
 })
 

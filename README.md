@@ -18,6 +18,7 @@ A virtual bookshelf for fanfiction.
 
 - Shelf: Displays the user's bookshelf.
 - ShelfItem: Props: fic (an object). The simplified version of a fic displayed on the shelf.
+- NewFicForm: 
 
 ### Server Routes
 

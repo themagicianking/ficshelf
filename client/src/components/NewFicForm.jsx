@@ -1,4 +1,5 @@
 // to do: add custom required messages
+// to do: erase form data on dialogue close
 import {
   DialogActionTrigger,
   DialogBody,
@@ -14,6 +15,10 @@ import { Button, Field, Input, Stack } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 
+/**
+ * A component that holds the form dialogue for adding a new fic.
+ * @returns {JSX.Element} The new fic element.
+ */
 export function NewFicForm() {
   const [open, setOpen] = useState(false)
   const { register, handleSubmit, reset } = useForm()
