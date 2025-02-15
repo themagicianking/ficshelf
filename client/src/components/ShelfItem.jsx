@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Box, Text } from '@chakra-ui/react'
+import { LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
 
 /**
  *
@@ -8,11 +8,13 @@ import { Box, Text } from '@chakra-ui/react'
  */
 export function ShelfItem({ fic }) {
   return (
-    <Box bg="black" color="white" p="4">
-      <Text>
-        {fic.title} by {fic.author}
-      </Text>
-    </Box>
+    <LinkBox bg="black" color="white" p="4">
+      <LinkOverlay href={fic.link} target="_blank">
+        <Text>
+          {fic.title} by {fic.author}
+        </Text>
+      </LinkOverlay>
+    </LinkBox>
   )
 }
 
