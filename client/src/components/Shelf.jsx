@@ -35,7 +35,7 @@ export function Shelf() {
   }
 
   return (
-    <Stack>
+    <Stack style={{ transform: 'rotate(90deg)' }}>
       {shelf ? (
         <For each={shelf}>
           {(item, index) => <ShelfItem key={index} fic={item} />}
