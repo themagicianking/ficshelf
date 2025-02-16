@@ -1,18 +1,29 @@
 import express from 'express'
 import cors from 'cors'
+import pkg from 'pg'
 import 'dotenv/config'
-import { SHELF } from './data.js'
+// import { SHELF } from './data.js'
 
 const APP = express()
 const port = process.env.PORT || 3000
+const { Pool } = pkg
+const pool = new Pool({
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD
+})
 
 APP.use(express.json())
 APP.use(cors())
 
 APP.get('/shelf', async (req, res) => {
+  const DATABASE = await pool.connect()
+  DATABASE.release()
   try {
-    console.log(`Sending shelf with ${SHELF.length} book(s).`)
-    res.json(SHELF)
+    const SHELF = await DATABASE.query('SELECT * FROM fics;')
+    console.log(`Sending shelf with ${SHELF.rows.length} book(s).`)
+    res.json(SHELF.rows)
   } catch (error) {
     console.log('Could not find shelf.')
     res.status(404).send(error)
