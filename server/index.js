@@ -31,7 +31,13 @@ APP.get('/shelf', async (req, res) => {
 })
 
 APP.post('/fic', async (req, res) => {
+  const DATABASE = await pool.connect()
+  DATABASE.release()
   try {
+    const FIC = req.body
+    await DATABASE.query(
+      `INSERT INTO fics (title, author, fandom, link) VALUES ('${FIC.title}', '${FIC.author}', '${FIC.fandom}', '${FIC.link}');`
+    )
     console.log(
       `Posting new fic data ${JSON.stringify(req.body, undefined, 4)}}.`
     )
